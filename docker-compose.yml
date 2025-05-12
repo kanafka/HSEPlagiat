@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: filedb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecret
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  file-storage:
+    build:
+      context: ./FileStoringService
+    ports:
+      - "8001:8001"               # наружу 8001 -> внутри 8001
+    environment:
+      ASPNETCORE_URLS: http://+:8001
+      ConnectionStrings__Default: Host=postgres;Port=5432;Database=filedb;Username=postgres;Password=mysecret
+    depends_on:
+      - postgres
+    volumes:
+      - file_data:/app/Files
+
+  api-gateway:
+    build:
+      context: ./ApiGateway
+    ports:
+      - "8000:8000"               # наружу 8000 -> внутри 8000
+    environment:
+      ASPNETCORE_URLS: http://+:8000
+    depends_on:
+      - file-storage
+
+volumes:
+  pg_data:
+  file_data:

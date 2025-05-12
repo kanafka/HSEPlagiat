@@ -1,0 +1,40 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  api-gateway:
+    build:
+      context: "C:\\Users\\artba\\RiderProjects\\HSEPlagiat\\ApiGateway"
+      dockerfile: "Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/ApiGateway.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "apigateway:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\artba\\RiderProjects\\HSEPlagiat\\ApiGateway:/app:rw"
+    - "C:\\Users\\artba\\RiderProjects\\HSEPlagiat:/src:rw"
+    - "C:\\Users\\artba\\.nuget\\packages:/root/.nuget/packages"
+    working_dir: "/app"
+  file-storage:
+    build:
+      context: "C:\\Users\\artba\\RiderProjects\\HSEPlagiat\\FileStoringService"
+      dockerfile: "Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/FileStoringService.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "filestoringservice:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\artba\\RiderProjects\\HSEPlagiat\\FileStoringService:/app:rw"
+    - "C:\\Users\\artba\\RiderProjects\\HSEPlagiat:/src:rw"
+    - "C:\\Users\\artba\\.nuget\\packages:/root/.nuget/packages"
+    working_dir: "/app"

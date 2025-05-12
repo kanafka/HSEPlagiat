@@ -1,0 +1,46 @@
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\appsettings.json
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\File Storing Service.staticwebassets.endpoints.json
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\File Storing Service.exe
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\File Storing Service.deps.json
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\File Storing Service.runtimeconfig.json
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\File Storing Service.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\File Storing Service.pdb
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\File Storing Service.csproj.AssemblyReference.cache
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\File Storing Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\File Storing Service.AssemblyInfoInputs.cache
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\File Storing Service.AssemblyInfo.cs
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\File Storing Service.csproj.CoreCompileInputs.cache
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\File Storing Service.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\File Storing Service.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\scopedcss\bundle\File Storing Service.styles.css
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\staticwebassets\msbuild.File Storing Service.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\staticwebassets\msbuild.File Storing Service.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\staticwebassets\msbuild.build.File Storing Service.props
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.File Storing Service.props
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.File Storing Service.props
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\staticwebassets.pack.json
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\File Sto.66A38740.Up2Date
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\File Storing Service.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\refint\File Storing Service.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\File Storing Service.pdb
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\File Storing Service.genruntimeconfig.cache
+C:\Users\artba\RiderProjects\HSEPlagiat\File Storing Service\obj\Debug\net9.0\ref\File Storing Service.dll
