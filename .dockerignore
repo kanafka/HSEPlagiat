@@ -1,25 +1,37 @@
-﻿**/.dockerignore
-**/.env
-**/.git
-**/.gitignore
-**/.project
-**/.settings
-**/.toolstarget
-**/.vs
-**/.vscode
-**/.idea
-**/*.*proj.user
-**/*.dbmdl
-**/*.jfm
-**/azds.yaml
-**/bin
-**/charts
-**/docker-compose*
-**/Dockerfile*
-**/node_modules
-**/npm-debug.log
-**/obj
-**/secrets.dev.yaml
-**/values.dev.yaml
-LICENSE
-README.md
+﻿# Бинарные файлы и временные сборки
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+
+# Rider (JetBrains) файлы
+.idea/
+*.sln.iml
+
+# Файлы пользователя
+*.user
+*.suo
+
+# Файлы настроек Visual Studio
+.vscode/
+*.code-workspace
+
+# Логи
+*.log
+
+# docker volumes и данные
+docker-compose.override.yml
+.env
+
+# Папка хранения загруженных файлов
+Files/
+
+# Миграционные файлы можно оставлять, поэтому не блокируем Migrations/
+
+# Бэкапы БД (если есть)
+*.bak
+*.sql
+
+# Секретные настройки (если используешь)
+secrets.json
