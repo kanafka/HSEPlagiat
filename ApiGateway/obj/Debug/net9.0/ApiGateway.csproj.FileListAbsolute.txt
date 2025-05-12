@@ -34,3 +34,4 @@ C:\Users\artba\RiderProjects\HSEPlagiat\ApiGateway\obj\Debug\net9.0\refint\ApiGa
 C:\Users\artba\RiderProjects\HSEPlagiat\ApiGateway\obj\Debug\net9.0\ApiGateway.pdb
 C:\Users\artba\RiderProjects\HSEPlagiat\ApiGateway\obj\Debug\net9.0\ApiGateway.genruntimeconfig.cache
 C:\Users\artba\RiderProjects\HSEPlagiat\ApiGateway\obj\Debug\net9.0\ref\ApiGateway.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\ApiGateway\obj\Debug\net9.0\ApiGateway.sourcelink.json

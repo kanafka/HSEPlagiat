@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileStoringService", "FileStoringService\FileStoringService.csproj", "{65EC755B-0294-46F8-8C8D-06CA3BB16C9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileAnalysisService", "FileAnalysisService\FileAnalysisService.csproj", "{51F6BD58-EA84-47F9-B8EA-5FFE4C33E786}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{65EC755B-0294-46F8-8C8D-06CA3BB16C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65EC755B-0294-46F8-8C8D-06CA3BB16C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65EC755B-0294-46F8-8C8D-06CA3BB16C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51F6BD58-EA84-47F9-B8EA-5FFE4C33E786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F6BD58-EA84-47F9-B8EA-5FFE4C33E786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51F6BD58-EA84-47F9-B8EA-5FFE4C33E786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51F6BD58-EA84-47F9-B8EA-5FFE4C33E786}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
