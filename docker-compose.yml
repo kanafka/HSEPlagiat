@@ -1,6 +1,7 @@
 services:
   postgres:
     image: postgres:15
+    container_name: postgres
     environment:
       POSTGRES_DB: filedb
       POSTGRES_USER: postgres
@@ -23,25 +24,30 @@ services:
     volumes:
       - file_data:/app/Files
 
-  api-gateway:
-    build:
-      context: ./ApiGateway
-    ports:
-      - "8000:8000"               # наружу 8000 -> внутри 8000
-    environment:
-      ASPNETCORE_URLS: http://+:8000
-    depends_on:
-      - file-storage
-
   file-analysis:
+    container_name: file-analysis
+    build:
+      context: ./FileAnalysisService
+    ports:
+      - "8002:8002"
+    environment:
+      ASPNETCORE_URLS: http://+:8002
+      ConnectionStrings__Default: Host=postgres;Port=5432;Database=analysisdb;Username=postgres;Password=mysecret
+    depends_on:
+      - postgres
+
+  api-gateway:
+    container_name: api-gateway
     build:
       context: ./ApiGateway
     ports:
-      - "8002:8002"               # наружу 8000 -> внутри 8000
+      - "8000:8000"
     environment:
       ASPNETCORE_URLS: http://+:8000
     depends_on:
       - file-storage
+      - file-analysis
+
 volumes:
   pg_data:
   file_data:

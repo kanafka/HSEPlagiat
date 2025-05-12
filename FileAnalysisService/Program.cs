@@ -1,9 +1,11 @@
 using FileAnalisysService;
+using Microsoft.EntityFrameworkCore;
 
 class Program
 {
-    public void Main(string[] args)
+    public static void Main(string[] args)
     {
+
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddControllers();

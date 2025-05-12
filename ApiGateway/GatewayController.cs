@@ -56,7 +56,7 @@ public class GatewayController : ControllerBase
     public IActionResult Analyze(Guid fileId)
     {
         var client = _httpClientFactory.CreateClient();
-        var response = client.GetAsync($"http://analysis-service:8002/analyze/{fileId}").Result;
+        var response = client.GetAsync($"http://file-analysis:8002/analyze/{fileId}").Result;
         var result = response.Content.ReadAsStringAsync().Result;
 
         return Content(result, "application/json");
