@@ -1,0 +1,26 @@
+using FileAnalisysService;
+
+class Program
+{
+    public void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+        builder.Services.AddHttpClient();
+        builder.Services.AddDbContext<AnalysisDbContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+
+        builder.Services.AddScoped<IAnalysisService, SimpleAnalysisService>();
+
+        var app = builder.Build();
+
+        app.UseSwagger();
+        app.UseSwaggerUI();
+        app.MapControllers();
+        app.Run();
+
+    }
+}
