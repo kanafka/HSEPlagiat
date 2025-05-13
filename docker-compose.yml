@@ -10,6 +10,17 @@ services:
       - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
+  analysis-postgres:
+    image: postgres:15
+    container_name: analysis-postgres
+    environment:
+      POSTGRES_DB: analysisdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecret
+    ports:
+      - "5433:5432"  # наружу на 5433, внутри как обычно
+    volumes:
+      - analysis_pg_data:/var/lib/postgresql/data
 
   file-storage:
     build:
@@ -32,9 +43,10 @@ services:
       - "8002:8002"
     environment:
       ASPNETCORE_URLS: http://+:8002
-      ConnectionStrings__Default: Host=postgres;Port=5432;Database=analysisdb;Username=postgres;Password=mysecret
+      ConnectionStrings__Default: Host=analysis-postgres;Port=5432;Database=analysisdb;Username=postgres;Password=mysecret
     depends_on:
-      - postgres
+      - analysis-postgres
+
 
   api-gateway:
     container_name: api-gateway
@@ -51,3 +63,4 @@ services:
 volumes:
   pg_data:
   file_data:
+  analysis_pg_data:

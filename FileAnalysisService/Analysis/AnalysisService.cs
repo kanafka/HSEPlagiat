@@ -1,0 +1,92 @@
+using System.Text.RegularExpressions;
+
+namespace FileAnalisysService;
+
+public class SimpleAnalysisService : IAnalysisService
+    {
+        private readonly AnalysisDbContext _db;
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public SimpleAnalysisService(AnalysisDbContext db, IHttpClientFactory httpClientFactory)
+        {
+            _db = db;
+            _httpClientFactory = httpClientFactory;
+        }
+
+        public AnalysisResult Analyze(Guid fileId)
+    {
+        var client = _httpClientFactory.CreateClient(); 
+        var response = client.GetAsync($"http://file-storage:8001/file/get/{fileId}").Result;
+
+        if (!response.IsSuccessStatusCode)
+            throw new Exception("Не удалось получить файл");
+
+        var text = response.Content.ReadAsStringAsync().Result;
+        var normalizedText = NormalizeText(text); // Нормализуем текст (удаление лишних пробелов и т.д.)
+
+        // Сохраняем, если ещё нет
+        if (!_db.Files.Any(f => f.FileId == fileId))
+        {
+            _db.Files.Add(new AnalyzedFile { FileId = fileId, Content = normalizedText });
+            _db.SaveChanges();
+        }
+
+        // Сравниваем с другими
+        var similarities = new List<FileSimilarity>();
+
+        foreach (var other in _db.Files.Where(f => f.FileId != fileId))
+        {
+            var otherText = other.Content;
+            var normalizedOtherText = NormalizeText(otherText); // Нормализуем текст другого файла
+            
+            int commonCharCount = CountCommonCharacters(normalizedText, normalizedOtherText);
+            int minChars = Math.Min(normalizedText.Length, normalizedOtherText.Length);
+            int maxChars = Math.Max(normalizedText.Length, normalizedOtherText.Length);
+
+            // Вычисляем схожесть как минимальное количество символов / максимальное
+            double similarity = (double)commonCharCount / maxChars;
+
+            similarities.Add(new FileSimilarity { ComparedTo = other.FileId, SimilarityPercentage = similarity });
+        }
+
+        return new AnalysisResult
+        {
+            FileId = fileId,
+            Similarities = similarities.OrderByDescending(s => s.SimilarityPercentage).ToList()
+        };
+    }
+
+    private int CountCommonCharacters(string text1, string text2)
+    {
+        // Считаем количество общих символов между двумя строками
+        int commonCharCount = 0;
+
+        // Преобразуем в массивы символов для быстрого подсчета
+        var chars1 = text1.ToCharArray();
+        var chars2 = text2.ToCharArray();
+
+        // Создадим словарь для подсчета символов в первом тексте
+        var charCount1 = chars1.GroupBy(c => c).ToDictionary(g => g.Key, g => g.Count());
+
+        // Считаем сколько символов из второго текста есть в первом
+        foreach (var c in chars2)
+        {
+            if (charCount1.ContainsKey(c) && charCount1[c] > 0)
+            {
+                commonCharCount++;
+                charCount1[c]--; // Уменьшаем количество оставшихся символов для текущего символа
+            }
+        }
+
+        return commonCharCount;
+    }
+
+
+
+        private string NormalizeText(string input)
+        {
+            input = input.ToLowerInvariant();
+            input = Regex.Replace(input, "[^a-zа-я0-9 ]", "");
+            return input;
+        }
+    }

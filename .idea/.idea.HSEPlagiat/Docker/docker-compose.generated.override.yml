@@ -19,6 +19,25 @@ services:
     - "C:\\Users\\artba\\RiderProjects\\HSEPlagiat:/src:rw"
     - "C:\\Users\\artba\\.nuget\\packages:/root/.nuget/packages"
     working_dir: "/app"
+  file-analysis:
+    build:
+      context: "C:\\Users\\artba\\RiderProjects\\HSEPlagiat\\FileAnalysisService"
+      dockerfile: "Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/FileAnalysisService.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "fileanalysisservice:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\artba\\RiderProjects\\HSEPlagiat\\FileAnalysisService:/app:rw"
+    - "C:\\Users\\artba\\RiderProjects\\HSEPlagiat:/src:rw"
+    - "C:\\Users\\artba\\.nuget\\packages:/root/.nuget/packages"
+    working_dir: "/app"
   file-storage:
     build:
       context: "C:\\Users\\artba\\RiderProjects\\HSEPlagiat\\FileStoringService"

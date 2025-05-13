@@ -18,6 +18,11 @@ class Program
         builder.Services.AddScoped<IAnalysisService, SimpleAnalysisService>();
 
         var app = builder.Build();
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<AnalysisDbContext>();
+            db.Database.Migrate(); // Применяет все миграции
+        }
 
         app.UseSwagger();
         app.UseSwaggerUI();
