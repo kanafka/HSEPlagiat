@@ -132,4 +132,3 @@ C:\Users\artba\RiderProjects\HSEPlagiat\FileStoringService\bin\Debug\net9.0\tr\M
 C:\Users\artba\RiderProjects\HSEPlagiat\FileStoringService\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\artba\RiderProjects\HSEPlagiat\FileStoringService\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\artba\RiderProjects\HSEPlagiat\FileStoringService\obj\Debug\net9.0\FileStoringService.sourcelink.json
-C:\Users\artba\RiderProjects\HSEPlagiat\FileStoringService\bin\Debug\net9.0\System.Text.Json.dll

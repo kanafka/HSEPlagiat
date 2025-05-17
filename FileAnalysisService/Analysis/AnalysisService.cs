@@ -28,6 +28,7 @@ public class SimpleAnalysisService : IAnalysisService
         // Сохраняем, если ещё нет
         if (_db.Files.Any(f => f.FileId == fileId))
         {
+            Console.WriteLine("gghhhjj123 euzhe st");
             return new AnalysisResult()
                 { FileId = fileId, Similarities = _db.Files.Single(f => f.FileId == fileId).Similarities };
         }
@@ -36,11 +37,15 @@ public class SimpleAnalysisService : IAnalysisService
         var similarities = new List<FileSimilarity>();
         
         
-        var responseIds = client.GetAsync("http://file-storage:8001/file/getAllIds").Result;
+        var responseIds = client.GetAsync("http://file-storage:8001/file/getAllId").Result;
         var json = responseIds.Content.ReadAsStringAsync().Result;
         var ids = JsonSerializer.Deserialize<List<Guid>>(json);
         foreach (var other in ids)
         {
+            if (other == fileId)
+            {
+                continue;
+            }
             var otherText = client.GetAsync($"http://file-storage:8001/file/get/{other}").Result.Content.ReadAsStringAsync().Result;
             var normalizedOtherText = NormalizeText(otherText); // Нормализуем текст другого файла
             
@@ -50,11 +55,18 @@ public class SimpleAnalysisService : IAnalysisService
 
             // Вычисляем схожесть как минимальное количество символов / максимальное
             double similarity = (double)commonCharCount / maxChars;
+            if (similarity == 1)
+            {
+                Console.WriteLine(other);
+            }
 
             similarities.Add(new FileSimilarity { ComparedTo = other, SimilarityPercentage = similarity });
+            Console.WriteLine("ASD");
         }
+        
         _db.Files.Add(new AnalyzedFile { FileId = fileId, Similarities = similarities.OrderByDescending(s => s.SimilarityPercentage).ToList()[0].SimilarityPercentage});
         _db.SaveChanges();
+        Console.WriteLine(similarities.Count);
         return new AnalysisResult
         {
             FileId = fileId,
@@ -86,9 +98,6 @@ public class SimpleAnalysisService : IAnalysisService
 
         return commonCharCount;
     }
-
-
-
         private string NormalizeText(string input)
         {
             input = input.ToLowerInvariant();

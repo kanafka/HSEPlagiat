@@ -21,7 +21,7 @@ class Program
         using (var scope = app.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<AnalysisDbContext>();
-            db.Database.Migrate(); // Применяет все миграции
+            db.Database.Migrate();
         }
 
         app.UseSwagger();
