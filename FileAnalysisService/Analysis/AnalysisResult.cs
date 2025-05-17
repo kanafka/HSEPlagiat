@@ -9,5 +9,5 @@ public class FileSimilarity
 public class AnalysisResult
 {
     public Guid FileId { get; set; }
-    public List<FileSimilarity> Similarities { get; set; } = new();
+    public double Similarities { get; set; }
 }

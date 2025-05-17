@@ -70,6 +70,9 @@ public class PostgresFileStorage : IFileStorage
         var contentType = "application/octet-stream";
         return (stream, contentType, file.Name);
     }
-    
-    
+
+    public List<Guid> GetAllIds()
+    {
+        return _db.Files.Select(f => f.Id).ToList();
+    }
 }

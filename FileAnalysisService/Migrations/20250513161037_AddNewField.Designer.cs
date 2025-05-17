@@ -3,6 +3,7 @@ using System;
 using FileAnalisysService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FileAnalisysService.Migrations
 {
     [DbContext(typeof(AnalysisDbContext))]
-    partial class AnalysisDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250513161037_AddNewField")]
+    partial class AddNewField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

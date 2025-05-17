@@ -8,5 +8,5 @@ public class AnalyzedFile
     public Guid FileId { get; set; }
 
     [Required]
-    public string Content { get; set; } = string.Empty;
+    public double Similarities { get; set; }
 }

@@ -30,6 +30,12 @@ public class FileController:ControllerBase
         }
     }
 
+    [HttpGet("getAllId")]
+    public IActionResult GetAllId()
+    {
+        return Ok(_storage.GetAllIds());
+    }
+    
     [HttpPost("upload")]
     public IActionResult Upload(IFormFile file)
     {

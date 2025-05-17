@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace FileAnalisysService;
@@ -25,18 +26,22 @@ public class SimpleAnalysisService : IAnalysisService
         var normalizedText = NormalizeText(text); // Нормализуем текст (удаление лишних пробелов и т.д.)
 
         // Сохраняем, если ещё нет
-        if (!_db.Files.Any(f => f.FileId == fileId))
+        if (_db.Files.Any(f => f.FileId == fileId))
         {
-            _db.Files.Add(new AnalyzedFile { FileId = fileId, Content = normalizedText });
-            _db.SaveChanges();
+            return new AnalysisResult()
+                { FileId = fileId, Similarities = _db.Files.Single(f => f.FileId == fileId).Similarities };
         }
 
         // Сравниваем с другими
         var similarities = new List<FileSimilarity>();
-
-        foreach (var other in _db.Files.Where(f => f.FileId != fileId))
+        
+        
+        var responseIds = client.GetAsync("http://file-storage:8001/file/getAllIds").Result;
+        var json = responseIds.Content.ReadAsStringAsync().Result;
+        var ids = JsonSerializer.Deserialize<List<Guid>>(json);
+        foreach (var other in ids)
         {
-            var otherText = other.Content;
+            var otherText = client.GetAsync($"http://file-storage:8001/file/get/{other}").Result.Content.ReadAsStringAsync().Result;
             var normalizedOtherText = NormalizeText(otherText); // Нормализуем текст другого файла
             
             int commonCharCount = CountCommonCharacters(normalizedText, normalizedOtherText);
@@ -46,13 +51,14 @@ public class SimpleAnalysisService : IAnalysisService
             // Вычисляем схожесть как минимальное количество символов / максимальное
             double similarity = (double)commonCharCount / maxChars;
 
-            similarities.Add(new FileSimilarity { ComparedTo = other.FileId, SimilarityPercentage = similarity });
+            similarities.Add(new FileSimilarity { ComparedTo = other, SimilarityPercentage = similarity });
         }
-
+        _db.Files.Add(new AnalyzedFile { FileId = fileId, Similarities = similarities.OrderByDescending(s => s.SimilarityPercentage).ToList()[0].SimilarityPercentage});
+        _db.SaveChanges();
         return new AnalysisResult
         {
             FileId = fileId,
-            Similarities = similarities.OrderByDescending(s => s.SimilarityPercentage).ToList()
+            Similarities = similarities.OrderByDescending(s => s.SimilarityPercentage).ToList()[0].SimilarityPercentage
         };
     }
 
