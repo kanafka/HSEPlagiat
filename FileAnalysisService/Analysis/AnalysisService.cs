@@ -14,65 +14,69 @@ public class SimpleAnalysisService : IAnalysisService
             _httpClientFactory = httpClientFactory;
         }
 
-        public AnalysisResult Analyze(Guid fileId)
-    {
-        var client = _httpClientFactory.CreateClient(); 
-        var response = client.GetAsync($"http://file-storage:8001/file/get/{fileId}").Result;
-
-        if (!response.IsSuccessStatusCode)
-            throw new Exception("Не удалось получить файл");
-
-        var text = response.Content.ReadAsStringAsync().Result;
-        var normalizedText = NormalizeText(text); // Нормализуем текст (удаление лишних пробелов и т.д.)
-
-        // Сохраняем, если ещё нет
-        if (_db.Files.Any(f => f.FileId == fileId))
+        public WordAnalysisResult WordAnalysis(Guid fileId)
         {
-            Console.WriteLine("gghhhjj123 euzhe st");
-            return new AnalysisResult()
-                { FileId = fileId, Similarities = _db.Files.Single(f => f.FileId == fileId).Similarities };
-        }
-
-        // Сравниваем с другими
-        var similarities = new List<FileSimilarity>();
-        
-        
-        var responseIds = client.GetAsync("http://file-storage:8001/file/getAllId").Result;
-        var json = responseIds.Content.ReadAsStringAsync().Result;
-        var ids = JsonSerializer.Deserialize<List<Guid>>(json);
-        foreach (var other in ids)
-        {
-            if (other == fileId)
-            {
-                continue;
-            }
-            var otherText = client.GetAsync($"http://file-storage:8001/file/get/{other}").Result.Content.ReadAsStringAsync().Result;
-            var normalizedOtherText = NormalizeText(otherText); // Нормализуем текст другого файла
             
-            int commonCharCount = CountCommonCharacters(normalizedText, normalizedOtherText);
-            int minChars = Math.Min(normalizedText.Length, normalizedOtherText.Length);
-            int maxChars = Math.Max(normalizedText.Length, normalizedOtherText.Length);
+        }
+        public AnalysisResult PlagiatAnalyze(Guid fileId)
+        {
+            var client = _httpClientFactory.CreateClient(); 
+            var response = client.GetAsync($"http://file-storage:8001/file/get/{fileId}").Result;
 
-            // Вычисляем схожесть как минимальное количество символов / максимальное
-            double similarity = (double)commonCharCount / maxChars;
-            if (similarity == 1)
+            if (!response.IsSuccessStatusCode)
+                throw new Exception("Не удалось получить файл");
+
+            var text = response.Content.ReadAsStringAsync().Result;
+            var normalizedText = NormalizeText(text); // Нормализуем текст (удаление лишних пробелов и т.д.)
+
+            // Сохраняем, если ещё нет
+            if (_db.Files.Any(f => f.FileId == fileId))
             {
-                Console.WriteLine(other);
+                Console.WriteLine("gghhhjj123 euzhe st");
+                return new AnalysisResult()
+                    { FileId = fileId, Similarities = _db.Files.Single(f => f.FileId == fileId).Similarities };
             }
 
-            similarities.Add(new FileSimilarity { ComparedTo = other, SimilarityPercentage = similarity });
-            Console.WriteLine("ASD");
+            // Сравниваем с другими
+            var similarities = new List<FileSimilarity>();
+            
+            
+            var responseIds = client.GetAsync("http://file-storage:8001/file/getAllId").Result;
+            var json = responseIds.Content.ReadAsStringAsync().Result;
+            var ids = JsonSerializer.Deserialize<List<Guid>>(json);
+            foreach (var other in ids)
+            {
+                if (other == fileId)
+                {
+                    continue;
+                }
+                var otherText = client.GetAsync($"http://file-storage:8001/file/get/{other}").Result.Content.ReadAsStringAsync().Result;
+                var normalizedOtherText = NormalizeText(otherText); // Нормализуем текст другого файла
+                
+                int commonCharCount = CountCommonCharacters(normalizedText, normalizedOtherText);
+                int minChars = Math.Min(normalizedText.Length, normalizedOtherText.Length);
+                int maxChars = Math.Max(normalizedText.Length, normalizedOtherText.Length);
+
+                // Вычисляем схожесть как минимальное количество символов / максимальное
+                double similarity = (double)commonCharCount / maxChars;
+                if (similarity == 1)
+                {
+                    Console.WriteLine(other);
+                }
+
+                similarities.Add(new FileSimilarity { ComparedTo = other, SimilarityPercentage = similarity });
+                Console.WriteLine("ASD");
+            }
+            
+            _db.Files.Add(new AnalyzedFile { FileId = fileId, Similarities = similarities.OrderByDescending(s => s.SimilarityPercentage).ToList()[0].SimilarityPercentage, WordAnalysis = null});
+            _db.SaveChanges();
+            Console.WriteLine(similarities.Count);
+            return new AnalysisResult
+            {
+                FileId = fileId,
+                Similarities = similarities.OrderByDescending(s => s.SimilarityPercentage).ToList()[0].SimilarityPercentage
+            };
         }
-        
-        _db.Files.Add(new AnalyzedFile { FileId = fileId, Similarities = similarities.OrderByDescending(s => s.SimilarityPercentage).ToList()[0].SimilarityPercentage});
-        _db.SaveChanges();
-        Console.WriteLine(similarities.Count);
-        return new AnalysisResult
-        {
-            FileId = fileId,
-            Similarities = similarities.OrderByDescending(s => s.SimilarityPercentage).ToList()[0].SimilarityPercentage
-        };
-    }
 
     private int CountCommonCharacters(string text1, string text2)
     {

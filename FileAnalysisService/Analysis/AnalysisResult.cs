@@ -6,6 +6,13 @@ public class FileSimilarity
     public double SimilarityPercentage { get; set; }
 }
 
+public class WordAnalysisResult
+{
+    public int WordCount { get; set; }
+    public int ParagraphCount { get; set; }
+    public int CharacterCount { get; set; }
+}
+
 public class AnalysisResult
 {
     public Guid FileId { get; set; }

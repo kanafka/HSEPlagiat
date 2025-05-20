@@ -18,7 +18,7 @@ public class AnalysisController : ControllerBase
     {
         try
         {
-            var result = _service.Analyze(fileId);
+            var result = _service.PlagiatAnalyze(fileId);
             return Ok(result);
         }
         catch (Exception ex)

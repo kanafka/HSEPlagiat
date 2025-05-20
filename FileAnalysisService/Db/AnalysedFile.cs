@@ -9,4 +9,7 @@ public class AnalyzedFile
 
     [Required]
     public double Similarities { get; set; }
+    
+    [Required]
+    public WordAnalysisResult WordAnalysis { get; set; }
 }
