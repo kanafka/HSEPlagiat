@@ -16,5 +16,5 @@ public class WordAnalysisResult
 public class AnalysisResult
 {
     public Guid FileId { get; set; }
-    public double Similarities { get; set; }
+    public double? Similarities { get; set; }
 }

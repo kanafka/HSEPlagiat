@@ -8,8 +8,8 @@ public class AnalyzedFile
     public Guid FileId { get; set; }
 
     [Required]
-    public double Similarities { get; set; }
+    public double? Similarities { get; set; }
     
     [Required]
-    public WordAnalysisResult WordAnalysis { get; set; }
+    public WordAnalysisResult? WordAnalysis { get; set; }
 }

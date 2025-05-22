@@ -17,26 +17,53 @@ public class SimpleAnalysisService : IAnalysisService
         public WordAnalysisResult WordAnalysis(Guid fileId)
         {
             
+            if (_db.Files.Any(f => f.FileId == fileId && f.WordAnalysis != null))
+            {
+                Console.WriteLine("gghhhjj123 euzhe st");
+                return new WordAnalysisResult()
+                {
+                    WordCount = _db.Files.Single(f => f.FileId == fileId).WordAnalysis.WordCount,
+                    ParagraphCount = _db.Files.Single(f => f.FileId == fileId).WordAnalysis.ParagraphCount,
+                    CharacterCount = _db.Files.Single(f => f.FileId == fileId).WordAnalysis.CharacterCount
+                };
+            }
+            
+            var client = _httpClientFactory.CreateClient();
+            string text = GetFile(fileId, client);
+            
+            var wordCount = Regex.Matches(text, @"\b\w+\b").Count;
+            var letterCount = text.Count(char.IsLetter);
+            var paragraphCount = text.Split(new[] { "\r\n\r\n", "\n\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
+            
+            
+            
+            WordAnalysisResult result = new WordAnalysisResult(){WordCount = wordCount, CharacterCount = letterCount, ParagraphCount = paragraphCount};
+            
+            return result;
         }
-        public AnalysisResult PlagiatAnalyze(Guid fileId)
+
+
+        private string GetFile(Guid fileId, HttpClient client)
         {
-            var client = _httpClientFactory.CreateClient(); 
             var response = client.GetAsync($"http://file-storage:8001/file/get/{fileId}").Result;
 
             if (!response.IsSuccessStatusCode)
                 throw new Exception("Не удалось получить файл");
 
-            var text = response.Content.ReadAsStringAsync().Result;
-            var normalizedText = NormalizeText(text); // Нормализуем текст (удаление лишних пробелов и т.д.)
+            return response.Content.ReadAsStringAsync().Result;
+        }
+        public AnalysisResult PlagiatAnalyze(Guid fileId)
+        {
 
             // Сохраняем, если ещё нет
-            if (_db.Files.Any(f => f.FileId == fileId))
+            if (_db.Files.Any(f => f.FileId == fileId && f.Similarities != null))
             {
                 Console.WriteLine("gghhhjj123 euzhe st");
                 return new AnalysisResult()
                     { FileId = fileId, Similarities = _db.Files.Single(f => f.FileId == fileId).Similarities };
             }
-
+            var client = _httpClientFactory.CreateClient(); 
+            string text = GetFile(fileId, client);
             // Сравниваем с другими
             var similarities = new List<FileSimilarity>();
             
@@ -50,14 +77,13 @@ public class SimpleAnalysisService : IAnalysisService
                 {
                     continue;
                 }
-                var otherText = client.GetAsync($"http://file-storage:8001/file/get/{other}").Result.Content.ReadAsStringAsync().Result;
-                var normalizedOtherText = NormalizeText(otherText); // Нормализуем текст другого файла
-                
-                int commonCharCount = CountCommonCharacters(normalizedText, normalizedOtherText);
-                int minChars = Math.Min(normalizedText.Length, normalizedOtherText.Length);
-                int maxChars = Math.Max(normalizedText.Length, normalizedOtherText.Length);
+                var otherText = GetFile(other, client);
 
-                // Вычисляем схожесть как минимальное количество символов / максимальное
+                
+                int commonCharCount = CountCommonCharacters(text, otherText);
+                int maxChars = Math.Max(text.Length, otherText.Length);
+
+                // Вычисляем схожесть как общее / максимальное
                 double similarity = (double)commonCharCount / maxChars;
                 if (similarity == 1)
                 {
@@ -102,10 +128,4 @@ public class SimpleAnalysisService : IAnalysisService
 
         return commonCharCount;
     }
-        private string NormalizeText(string input)
-        {
-            input = input.ToLowerInvariant();
-            input = Regex.Replace(input, "[^a-zа-я0-9 ]", "");
-            return input;
-        }
     }
