@@ -34,12 +34,30 @@ public class SimpleAnalysisService : IAnalysisService
             var wordCount = Regex.Matches(text, @"\b\w+\b").Count;
             var letterCount = text.Count(char.IsLetter);
             var paragraphCount = text.Split(new[] { "\r\n\r\n", "\n\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
-            
-            
-            
-            WordAnalysisResult result = new WordAnalysisResult(){WordCount = wordCount, CharacterCount = letterCount, ParagraphCount = paragraphCount};
-            
-            return result;
+
+            var file = _db.Files.SingleOrDefault(f => f.FileId == fileId);
+            if (file != null)
+            {
+                // Initialize WordAnalysis if it's null
+                if (file.WordAnalysis == null)
+                {
+                    file.WordAnalysis = new WordAnalysisResult(); // Ensure this matches your entity type
+                }
+        
+                // Update values
+                file.WordAnalysis.WordCount = wordCount;
+                file.WordAnalysis.ParagraphCount = paragraphCount;
+                file.WordAnalysis.CharacterCount = letterCount;
+        
+                _db.SaveChanges(); // Persist changes to the database
+            }
+    
+            return new WordAnalysisResult()
+            {
+                WordCount = wordCount,
+                ParagraphCount = paragraphCount,
+                CharacterCount = letterCount
+            };
         }
 
 
