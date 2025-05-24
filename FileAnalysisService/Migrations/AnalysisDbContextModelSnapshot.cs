@@ -28,12 +28,54 @@ namespace FileAnalisysService.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<double>("Similarities")
+                    b.Property<double?>("Similarities")
                         .HasColumnType("double precision");
 
                     b.HasKey("FileId");
 
                     b.ToTable("Files");
+                });
+
+            modelBuilder.Entity("FileAnalisysService.WordCloudImage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WordCloudImages");
+                });
+
+            modelBuilder.Entity("FileAnalisysService.AnalyzedFile", b =>
+                {
+                    b.OwnsOne("FileAnalisysService.WordAnalysisResult", "WordAnalysis", b1 =>
+                        {
+                            b1.Property<Guid>("AnalyzedFileFileId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("CharacterCount")
+                                .HasColumnType("integer");
+
+                            b1.Property<int>("ParagraphCount")
+                                .HasColumnType("integer");
+
+                            b1.Property<int>("WordCount")
+                                .HasColumnType("integer");
+
+                            b1.HasKey("AnalyzedFileFileId");
+
+                            b1.ToTable("Files");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AnalyzedFileFileId");
+                        });
+
+                    b.Navigation("WordAnalysis");
                 });
 #pragma warning restore 612, 618
         }

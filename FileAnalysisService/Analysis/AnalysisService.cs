@@ -7,17 +7,19 @@ public class SimpleAnalysisService : IAnalysisService
     {
         private readonly AnalysisDbContext _db;
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IWordCloudService _wordCloudService;
 
-        public SimpleAnalysisService(AnalysisDbContext db, IHttpClientFactory httpClientFactory)
+        public SimpleAnalysisService(AnalysisDbContext db, IHttpClientFactory httpClientFactory, IWordCloudService wordCloudService)
         {
             _db = db;
             _httpClientFactory = httpClientFactory;
+            _wordCloudService = wordCloudService;
         }
-
-        public WordAnalysisResult WordAnalysis(Guid fileId)
+        
+        public WordAnalysisResult WordAnalyze(Guid fileId)
         {
             
-            if (_db.Files.Any(f => f.FileId == fileId && f.WordAnalysis != null))
+            if (_db.Files.Any(f => f.FileId == fileId && f.WordAnalysis.WordCount != -1))
             {
                 Console.WriteLine("gghhhjj123 euzhe st");
                 return new WordAnalysisResult()
@@ -34,12 +36,12 @@ public class SimpleAnalysisService : IAnalysisService
             var wordCount = Regex.Matches(text, @"\b\w+\b").Count;
             var letterCount = text.Count(char.IsLetter);
             var paragraphCount = text.Split(new[] { "\r\n\r\n", "\n\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
-
+            Console.WriteLine("1");
             var file = _db.Files.SingleOrDefault(f => f.FileId == fileId);
             if (file != null)
             {
                 // Initialize WordAnalysis if it's null
-                if (file.WordAnalysis == null)
+                if (file.WordAnalysis.WordCount == -1)
                 {
                     file.WordAnalysis = new WordAnalysisResult(); // Ensure this matches your entity type
                 }
@@ -48,10 +50,18 @@ public class SimpleAnalysisService : IAnalysisService
                 file.WordAnalysis.WordCount = wordCount;
                 file.WordAnalysis.ParagraphCount = paragraphCount;
                 file.WordAnalysis.CharacterCount = letterCount;
-        
-                _db.SaveChanges(); // Persist changes to the database
+                
             }
-    
+            else
+            {
+                _db.Files.Add(new AnalyzedFile { FileId = fileId, WordAnalysis = new WordAnalysisResult { WordCount = wordCount, ParagraphCount = paragraphCount, CharacterCount = letterCount } });
+                
+            }
+            Console.WriteLine("2");
+            Console.WriteLine($"Returning WordAnalysisResult: Words={wordCount}, Paragraphs={paragraphCount}, Characters={letterCount}");
+            _db.SaveChanges();
+            
+            _wordCloudService.GenerateWordCloud(text, fileId);
             return new WordAnalysisResult()
             {
                 WordCount = wordCount,
@@ -112,7 +122,7 @@ public class SimpleAnalysisService : IAnalysisService
                 Console.WriteLine("ASD");
             }
             
-            _db.Files.Add(new AnalyzedFile { FileId = fileId, Similarities = similarities.OrderByDescending(s => s.SimilarityPercentage).ToList()[0].SimilarityPercentage, WordAnalysis = null});
+            _db.Files.Add(new AnalyzedFile { FileId = fileId, Similarities = similarities.OrderByDescending(s => s.SimilarityPercentage).ToList()[0].SimilarityPercentage, WordAnalysis = new WordAnalysisResult(){WordCount = -1}});
             _db.SaveChanges();
             Console.WriteLine(similarities.Count);
             return new AnalysisResult
@@ -122,7 +132,9 @@ public class SimpleAnalysisService : IAnalysisService
             };
         }
 
-    private int CountCommonCharacters(string text1, string text2)
+
+
+        private int CountCommonCharacters(string text1, string text2)
     {
         // Считаем количество общих символов между двумя строками
         int commonCharCount = 0;

@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   postgres:
     image: postgres:15
@@ -10,6 +12,7 @@ services:
       - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
+
   analysis-postgres:
     image: postgres:15
     container_name: analysis-postgres
@@ -18,7 +21,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: mysecret
     ports:
-      - "5433:5432"  # наружу на 5433, внутри как обычно
+      - "5433:5432"
     volumes:
       - analysis_pg_data:/var/lib/postgresql/data
 
@@ -26,7 +29,7 @@ services:
     build:
       context: ./FileStoringService
     ports:
-      - "8001:8001"               # наружу 8001 -> внутри 8001
+      - "8001:8001"
     environment:
       ASPNETCORE_URLS: http://+:8001
       ConnectionStrings__Default: Host=postgres;Port=5432;Database=filedb;Username=postgres;Password=mysecret
@@ -46,7 +49,8 @@ services:
       ConnectionStrings__Default: Host=analysis-postgres;Port=5432;Database=analysisdb;Username=postgres;Password=mysecret
     depends_on:
       - analysis-postgres
-
+    volumes:
+      - wordcloud_data:/app/WordCloudImages
 
   api-gateway:
     container_name: api-gateway
@@ -64,3 +68,5 @@ volumes:
   pg_data:
   file_data:
   analysis_pg_data:
+  analysis_data:
+  wordcloud_data:

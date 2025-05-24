@@ -132,4 +132,4 @@ C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysisService\bin\Debug\net9.0\ru\
 C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysisService\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysisService\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysisService\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysisService\bin\Debug\net9.0\System.Text.Json.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysisService\bin\Debug\net9.0\FileAnalysisService.staticwebassets.runtime.json

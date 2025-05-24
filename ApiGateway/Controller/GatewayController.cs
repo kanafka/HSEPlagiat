@@ -51,12 +51,39 @@ public class GatewayController : ControllerBase
 
         return File(stream, contentType, fileDownloadName: fileName);
     }
+    [HttpGet("WorldCloud/{fileId:guid}")]
+    public IActionResult GetWorldCloud(Guid fileId)
+    {
+        var client = _httpClientFactory.CreateClient();
+        var response = client.GetAsync($"http://file-analysis:8002/analyze/getWordCloud/{fileId}").Result;
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return StatusCode((int)response.StatusCode, "Файл не найден или ошибка на стороне file-service");
+        }
+
+        var stream = response.Content.ReadAsStreamAsync().Result;
+        var contentType = response.Content.Headers.ContentType?.ToString() ?? "application/octet-stream";
+        var fileName = response.Content.Headers.ContentDisposition?.FileName?.Trim('"') ?? "downloaded_file";
+
+        return File(stream, contentType, fileDownloadName: fileName);
+    }
 
     [HttpGet("analyze/{fileId:guid}")]
     public IActionResult Analyze(Guid fileId)
     {
         var client = _httpClientFactory.CreateClient();
         var response = client.GetAsync($"http://file-analysis:8002/analyze/{fileId}").Result;
+        var result = response.Content.ReadAsStringAsync().Result;
+
+        return Content(result, "application/json");
+    }
+
+    [HttpGet("WordAnalyze/{fileId:guid}")]
+    public IActionResult WordAnalyze(Guid fileId)
+    {
+        var client = _httpClientFactory.CreateClient();
+        var response = client.GetAsync($"http://file-analysis:8002/analyze/WordAnalyze/{fileId}").Result;
         var result = response.Content.ReadAsStringAsync().Result;
 
         return Content(result, "application/json");

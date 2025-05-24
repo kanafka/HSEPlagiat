@@ -5,4 +5,16 @@ public class AnalysisDbContext : DbContext
     public AnalysisDbContext(DbContextOptions<AnalysisDbContext> options) : base(options) { }
 
     public DbSet<AnalyzedFile> Files => Set<AnalyzedFile>();
+    public DbSet<WordCloudImage> WordCloudImages => Set<WordCloudImage>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<AnalyzedFile>()
+            .OwnsOne(f => f.WordAnalysis);
+
+        // Можно добавить ограничения или индексы при необходимости
+        modelBuilder.Entity<WordCloudImage>()
+            .Property(w => w.Location)
+            .IsRequired();
+    }
 }

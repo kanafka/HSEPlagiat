@@ -65,7 +65,7 @@ public class PostgresFileStorage : IFileStorage
         var file = _db.Files.Find(id);
         if (file == null || !System.IO.File.Exists(file.Location))
             throw new FileNotFoundException();
-
+        Console.WriteLine(file.Location);
         var stream = new FileStream(file.Location, FileMode.Open, FileAccess.Read);
         var contentType = "application/octet-stream";
         return (stream, contentType, file.Name);

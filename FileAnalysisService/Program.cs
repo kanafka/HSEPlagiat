@@ -1,4 +1,5 @@
 using FileAnalisysService;
+using FileAnalisysService.Storage;
 using Microsoft.EntityFrameworkCore;
 
 class Program
@@ -16,6 +17,8 @@ class Program
             options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
         builder.Services.AddScoped<IAnalysisService, SimpleAnalysisService>();
+        builder.Services.AddScoped<IWordCloudService, WordCloudService>();
+        builder.Services.AddScoped<IWordCloudStorage, WordCloudFileStorage>();
 
         var app = builder.Build();
         using (var scope = app.Services.CreateScope())
