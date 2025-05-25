@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GateWayTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a7e98ed36db76365cae35975e1f60f7bbcf93e7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+703a0bb78c7abda99f3791a4173ecaf8a4db3900")]
 [assembly: System.Reflection.AssemblyProductAttribute("GateWayTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GateWayTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
