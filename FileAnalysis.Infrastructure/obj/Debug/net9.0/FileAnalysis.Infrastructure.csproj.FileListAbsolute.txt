@@ -1,0 +1,16 @@
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\bin\Debug\net9.0\FileAnalysis.Infrastructure.deps.json
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\bin\Debug\net9.0\FileAnalysis.Infrastructure.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\bin\Debug\net9.0\FileAnalysis.Infrastructure.pdb
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\bin\Debug\net9.0\FileAnalysis.Domain.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\bin\Debug\net9.0\FileAnalysis.Domain.pdb
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\obj\Debug\net9.0\FileAnalysis.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\obj\Debug\net9.0\FileAnalysis.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\obj\Debug\net9.0\FileAnalysis.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\obj\Debug\net9.0\FileAnalysis.Infrastructure.AssemblyInfo.cs
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\obj\Debug\net9.0\FileAnalysis.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\obj\Debug\net9.0\FileAnalysis.Infrastructure.sourcelink.json
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\obj\Debug\net9.0\FileAnal.F822287D.Up2Date
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\obj\Debug\net9.0\FileAnalysis.Infrastructure.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\obj\Debug\net9.0\refint\FileAnalysis.Infrastructure.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\obj\Debug\net9.0\FileAnalysis.Infrastructure.pdb
+C:\Users\artba\RiderProjects\HSEPlagiat\FileAnalysis.Infrastructure\obj\Debug\net9.0\ref\FileAnalysis.Infrastructure.dll

@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+  # === PostgreSQL для FileStorage ===
   postgres:
     image: postgres:15
     container_name: postgres
@@ -13,6 +14,7 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
 
+  # === PostgreSQL для FileAnalysis ===
   analysis-postgres:
     image: postgres:15
     container_name: analysis-postgres
@@ -25,9 +27,11 @@ services:
     volumes:
       - analysis_pg_data:/var/lib/postgresql/data
 
+  # === File Storage API ===
   file-storage:
     build:
-      context: ./FileStoringService
+      context: ./FileStorage.Api
+      dockerfile: Dockerfile
     ports:
       - "8001:8001"
     environment:
@@ -38,10 +42,12 @@ services:
     volumes:
       - file_data:/app/Files
 
+  # === File Analysis API ===
   file-analysis:
-    container_name: file-analysis
     build:
-      context: ./FileAnalysisService
+      context: ./FileAnalysisService.Api
+      dockerfile: Dockerfile
+    container_name: file-analysis
     ports:
       - "8002:8002"
     environment:
@@ -52,10 +58,12 @@ services:
     volumes:
       - wordcloud_data:/app/WordCloudImages
 
+  # === API Gateway ===
   api-gateway:
-    container_name: api-gateway
     build:
       context: ./ApiGateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
     ports:
       - "8000:8000"
     environment:
@@ -66,7 +74,6 @@ services:
 
 volumes:
   pg_data:
-  file_data:
   analysis_pg_data:
-  analysis_data:
+  file_data:
   wordcloud_data:

@@ -1,0 +1,12 @@
+C:\Users\artba\RiderProjects\HSEPlagiat\FileStorage.Domain\bin\Debug\net9.0\FileStorage.Domain.deps.json
+C:\Users\artba\RiderProjects\HSEPlagiat\FileStorage.Domain\bin\Debug\net9.0\FileStorage.Domain.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\FileStorage.Domain\bin\Debug\net9.0\FileStorage.Domain.pdb
+C:\Users\artba\RiderProjects\HSEPlagiat\FileStorage.Domain\obj\Debug\net9.0\FileStorage.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artba\RiderProjects\HSEPlagiat\FileStorage.Domain\obj\Debug\net9.0\FileStorage.Domain.AssemblyInfoInputs.cache
+C:\Users\artba\RiderProjects\HSEPlagiat\FileStorage.Domain\obj\Debug\net9.0\FileStorage.Domain.AssemblyInfo.cs
+C:\Users\artba\RiderProjects\HSEPlagiat\FileStorage.Domain\obj\Debug\net9.0\FileStorage.Domain.csproj.CoreCompileInputs.cache
+C:\Users\artba\RiderProjects\HSEPlagiat\FileStorage.Domain\obj\Debug\net9.0\FileStorage.Domain.sourcelink.json
+C:\Users\artba\RiderProjects\HSEPlagiat\FileStorage.Domain\obj\Debug\net9.0\FileStorage.Domain.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\FileStorage.Domain\obj\Debug\net9.0\refint\FileStorage.Domain.dll
+C:\Users\artba\RiderProjects\HSEPlagiat\FileStorage.Domain\obj\Debug\net9.0\FileStorage.Domain.pdb
+C:\Users\artba\RiderProjects\HSEPlagiat\FileStorage.Domain\obj\Debug\net9.0\ref\FileStorage.Domain.dll

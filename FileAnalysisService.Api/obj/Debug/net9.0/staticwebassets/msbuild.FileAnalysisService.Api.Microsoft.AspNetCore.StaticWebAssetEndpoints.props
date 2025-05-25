@@ -1,0 +1,28 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/FileAnalysisService.Api/storage/wordclouds/6bd80beb-6df5-46a2-850f-669c8955b208.3mlvkifja4.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\storage\wordclouds\6bd80beb-6df5-46a2-850f-669c8955b208.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"3mlvkifja4"},{"Name":"integrity","Value":"sha256-1bTe0OmFmSGEIlGuaCl1VDyS3avdqRsEkauqLQizGlw="},{"Name":"label","Value":"_content/FileAnalysisService.Api/storage/wordclouds/6bd80beb-6df5-46a2-850f-669c8955b208.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"8798"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u00221bTe0OmFmSGEIlGuaCl1VDyS3avdqRsEkauqLQizGlw=\u0022"},{"Name":"Last-Modified","Value":"Sat, 24 May 2025 16:45:38 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/FileAnalysisService.Api/storage/wordclouds/6bd80beb-6df5-46a2-850f-669c8955b208.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\storage\wordclouds\6bd80beb-6df5-46a2-850f-669c8955b208.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-1bTe0OmFmSGEIlGuaCl1VDyS3avdqRsEkauqLQizGlw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"8798"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u00221bTe0OmFmSGEIlGuaCl1VDyS3avdqRsEkauqLQizGlw=\u0022"},{"Name":"Last-Modified","Value":"Sat, 24 May 2025 16:45:38 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/FileAnalysisService.Api/storage/wordclouds/e0674236-b38d-4322-8a74-712e66ac9e22.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\storage\wordclouds\e0674236-b38d-4322-8a74-712e66ac9e22.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-0wQteGgEd0JjMhGeE\u002BZMhZz8QtENfR0XOJ51zajJDKY="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"2865"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u00220wQteGgEd0JjMhGeE\u002BZMhZz8QtENfR0XOJ51zajJDKY=\u0022"},{"Name":"Last-Modified","Value":"Sat, 24 May 2025 16:48:26 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/FileAnalysisService.Api/storage/wordclouds/e0674236-b38d-4322-8a74-712e66ac9e22.vxljjvsm7i.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\storage\wordclouds\e0674236-b38d-4322-8a74-712e66ac9e22.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"vxljjvsm7i"},{"Name":"integrity","Value":"sha256-0wQteGgEd0JjMhGeE\u002BZMhZz8QtENfR0XOJ51zajJDKY="},{"Name":"label","Value":"_content/FileAnalysisService.Api/storage/wordclouds/e0674236-b38d-4322-8a74-712e66ac9e22.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2865"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u00220wQteGgEd0JjMhGeE\u002BZMhZz8QtENfR0XOJ51zajJDKY=\u0022"},{"Name":"Last-Modified","Value":"Sat, 24 May 2025 16:48:26 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

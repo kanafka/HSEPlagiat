@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\artba\\RiderProjects\\HSEPlagiat\\FileAnalysisService.Api\\wwwroot\\storage\\wordclouds\\6bd80beb-6df5-46a2-850f-669c8955b208.png",
+      "PackagePath": "staticwebassets\\storage\\wordclouds\\6bd80beb-6df5-46a2-850f-669c8955b208.png"
+    },
+    {
+      "Id": "C:\\Users\\artba\\RiderProjects\\HSEPlagiat\\FileAnalysisService.Api\\wwwroot\\storage\\wordclouds\\e0674236-b38d-4322-8a74-712e66ac9e22.png",
+      "PackagePath": "staticwebassets\\storage\\wordclouds\\e0674236-b38d-4322-8a74-712e66ac9e22.png"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.FileAnalysisService.Api.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.FileAnalysisService.Api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.FileAnalysisService.Api.props",
+      "PackagePath": "build\\FileAnalysisService.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.FileAnalysisService.Api.props",
+      "PackagePath": "buildMultiTargeting\\FileAnalysisService.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.FileAnalysisService.Api.props",
+      "PackagePath": "buildTransitive\\FileAnalysisService.Api.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
