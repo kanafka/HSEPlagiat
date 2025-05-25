@@ -117,51 +117,28 @@
 
 ## 7. Запуск сервисов
 
-1. Убедитесь, что установлены:
+Для удобства можно запустить всю систему через Docker Compose. Файл `docker-compose.yml` в корне репозитория содержит конфигурацию сервисов:
 
-    * .NET 8 SDK
-    * RDBMS (PostgreSQL) и доступны настройки подключения
+### Запуск через Docker Compose
 
-2. Склонируйте репозиторий и перейдите в корень:
+1. Убедитесь, что установлен Docker и Docker Compose и .net 9 и PostgreSql.
 
-```bash
-git clone https://github.com/your-org/file-microservices.git
-cd file-microservices
-```
+2. В корне проекта выполните:
 
-3. Настройте строки подключения в `appsettings.json` каждого сервиса:
+   ```bash
+   docker-compose up --build
+   ```
 
-```json
-"ConnectionStrings": {
-  "DefaultConnection": "Host=localhost;Database=filedb;Username=user;Password=pass"
-}
-```
+3. После успешного запуска сервисы будут доступны по адресам:
 
-4. Запустите File-Storing Service:
+    * File Storage:  `http://localhost:8001/file/...`
+    * File Analysis: `http://localhost:8002/analyze/...`
+    * API Gateway:   `http://localhost:8000/Gateway/...`
 
-```bash
-dotnet build FileStoringService
-dotnet run --project FileStoringService --urls "http://localhost:8001"
-```
+4. Остановить и удалить контейнеры можно командой:
 
-5. Запустите File-Analysis Service:
-
-```bash
-dotnet build FileAnalysisService
-dotnet run --project FileAnalysisService --urls "http://localhost:8002"
-```
-
-6. Запустите API Gateway:
-
-```bash
-dotnet build ApiGateway
-dotnet run --project ApiGateway --urls "http://localhost:8000"
-```
-
-> После запуска сервисы будут доступны:
->
-> * File Storage: `http://localhost:8001/file/...`
-> * File Analysis: `http://localhost:8002/analyze/...`
-> * Gateway: `http://localhost:8000/Gateway/...`
+   ```bash
+   docker-compose down
+   ```
 
 **Документ завершен.**
