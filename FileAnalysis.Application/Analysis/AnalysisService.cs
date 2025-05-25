@@ -82,7 +82,6 @@ public class SimpleAnalysisService : IAnalysisService
         }
 public AnalysisResult PlagiatAnalyze(Guid fileId)
 {
-    // Проверяем, существует ли уже анализ с вычисленным Similarities (не равным -1)
     if (_db.Files.Any(f => f.FileId == fileId && f.Similarities != -1))
     {
         Console.WriteLine("Анализ плагиата уже существует, возвращаем результат из БД");
@@ -97,7 +96,6 @@ public AnalysisResult PlagiatAnalyze(Guid fileId)
     string text = GetFile(fileId, client);
     var similarities = new List<FileSimilarity>();
     
-    // Получаем все ID файлов для сравнения
     var responseIds = client.GetAsync("http://file-storage:8001/file/getAllId").Result;
     var json = responseIds.Content.ReadAsStringAsync().Result;
     var ids = JsonSerializer.Deserialize<List<Guid>>(json);
@@ -117,13 +115,11 @@ public AnalysisResult PlagiatAnalyze(Guid fileId)
             SimilarityPercentage = similarity 
         });
     }
-
-    // Определяем максимальную схожесть
+    
     double highestSimilarity = similarities
         .OrderByDescending(s => s.SimilarityPercentage)
         .FirstOrDefault()?.SimilarityPercentage ?? 0;
 
-    // Обновляем существующую запись или создаем новую
     var existingFile = _db.Files.SingleOrDefault(f => f.FileId == fileId);
     if (existingFile != null)
     {
@@ -152,23 +148,21 @@ public AnalysisResult PlagiatAnalyze(Guid fileId)
 
         private int CountCommonCharacters(string text1, string text2)
     {
-        // Считаем количество общих символов между двумя строками
+
         int commonCharCount = 0;
 
-        // Преобразуем в массивы символов для быстрого подсчета
+
         var chars1 = text1.ToCharArray();
         var chars2 = text2.ToCharArray();
 
-        // Создадим словарь для подсчета символов в первом тексте
         var charCount1 = chars1.GroupBy(c => c).ToDictionary(g => g.Key, g => g.Count());
 
-        // Считаем сколько символов из второго текста есть в первом
         foreach (var c in chars2)
         {
             if (charCount1.ContainsKey(c) && charCount1[c] > 0)
             {
                 commonCharCount++;
-                charCount1[c]--; // Уменьшаем количество оставшихся символов для текущего символа
+                charCount1[c]--;
             }
         }
 

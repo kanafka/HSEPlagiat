@@ -20,7 +20,7 @@ public class PostgresFileStorage : IFileStorage
 
     public Guid SaveFile(IFormFile file)
     {
-        // Считаем хэш сразу из потока без сохранения на диск
+
         string hash;
         using (var memoryStream = new MemoryStream())
         {
@@ -30,14 +30,14 @@ public class PostgresFileStorage : IFileStorage
             hash = BitConverter.ToString(sha.ComputeHash(memoryStream)).Replace("-", "").ToLowerInvariant();
         }
 
-        // Проверяем, есть ли файл с таким хэшем
+
         var existingFile = _db.Files.FirstOrDefault(f => f.Hash == hash);
         if (existingFile != null)
         {
             return existingFile.Id;
         }
 
-        // Если такого файла нет — сохраняем файл на диск
+
         var id = Guid.NewGuid();
         var filePath = Path.Combine(_basePath, id.ToString());
 

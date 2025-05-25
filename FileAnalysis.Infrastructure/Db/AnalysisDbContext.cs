@@ -12,7 +12,6 @@ public class AnalysisDbContext : DbContext
         modelBuilder.Entity<AnalyzedFile>()
             .OwnsOne(f => f.WordAnalysis);
 
-        // Можно добавить ограничения или индексы при необходимости
         modelBuilder.Entity<WordCloudImage>()
             .Property(w => w.Location)
             .IsRequired();

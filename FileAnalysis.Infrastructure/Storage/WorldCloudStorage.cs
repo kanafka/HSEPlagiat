@@ -43,7 +43,6 @@ public class WordCloudFileStorage : IWordCloudStorage
         Console.WriteLine("Storage nachal iskat");
         var stream = new FileStream(file.Location, FileMode.Open, FileAccess.Read);
         var contentType = "application/octet-stream";
-        Console.WriteLine("conez strage get wordcloud image");
         return (stream, contentType, "image.png");
     }
 }

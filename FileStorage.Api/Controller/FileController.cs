@@ -22,12 +22,12 @@ public class FileController : ControllerBase
         }
         catch (FileNotFoundException)
         {
-            // 404, если нет метаданных или файла на диске
+
             return NotFound(new { code = "FileNotFound", message = "Файл не найден" });
         }
         catch (Exception)
         {
-            // 500, если что-то ещё пошло не так
+
             return StatusCode(500, new { code = "InternalError", message = "Внутренняя ошибка сервиса хранения" });
         }
     }
